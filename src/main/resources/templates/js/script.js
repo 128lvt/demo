@@ -31,4 +31,20 @@ app.controller("ProductController", function ($scope, $http) {
         console.log(error);
       });
   };
+
+  $scope.openDeleteModal = function (id) {
+    $scope.deleteId = id;
+    $("#deleteProductModal").modal("show");
+  };
+
+  $scope.deleteProduct = function () {
+    $http
+      .delete(API_PREFIX + "products/" + $scope.deleteId)
+      .then(function (response) {
+        $scope.getProducts();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 });
