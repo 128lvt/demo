@@ -47,4 +47,24 @@ app.controller("ProductController", function ($scope, $http) {
         console.log(error);
       });
   };
+
+  $scope.openEditProductModal = function (id) {
+    $scope.editId = id;
+    $("#editProductModal").modal("show");
+  };
+
+  $scope.editProduct = function () {
+    $http
+      .put(API_PREFIX + "products/" + $scope.editId, $scope.selectedProduct,{
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(function (response) {
+        $scope.getProducts();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 });
