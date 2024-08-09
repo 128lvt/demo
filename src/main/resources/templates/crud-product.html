@@ -64,17 +64,6 @@
           </tr>
         </tbody>
       </table>
-      <div class="clearfix">
-        <div class="hint-text">Showing <b>{{products.length}}</b> out of <b>{{totalProducts}}</b> products</div>
-        <ul class="pagination">
-          <li class="page-item" ng-class="{'disabled': currentPage === 0}">
-            <a href="#" ng-click="currentPage > 0 && getProducts(currentPage - 1)">Previous</a>
-          </li>
-          <li class="page-item" ng-class="{'disabled': currentPage === totalPages - 1}">
-            <a href="#" ng-click="currentPage < (totalPages - 1) && getProducts(currentPage + 1)">Next</a>
-          </li>
-        </ul>
-      </div>
     </div>
   </div>
   <!-- Add Modal HTML -->
@@ -88,6 +77,10 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
+              <label>ID</label>
+              <input type="text" id="id" ng-model="newProduct.id" class="form-control" required />
+            </div>
+            <div class="form-group">
               <label>Name</label>
               <input type="text" id="name" ng-model="newProduct.name" class="form-control" required />
             </div>
@@ -95,23 +88,7 @@
               <label>Price</label>
               <input type="number" id="price" ng-model="newProduct.price" step="0.1" class="form-control" required />
             </div>
-            <div class="form-group">
-              <label>Description</label>
-              <textarea id="description" ng-model="newProduct.description" class="form-control" required></textarea>
-            </div>
-            <div class="form-group">
-              <label>Category</label>
-              <select id="category" ng-model="newProduct.category_id" class="form-control" required>
-                <option value="">Select a category</option>
-                <option ng-repeat="category in categories" value="{{category.categoryId}}">{{category.categoryName}}
-                </option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="editImages">Images (Upload multiple files)</label>
-              <input type="file" class="form-control-file" id="uploadImages" multiple ng-model="files"
-                onchange="angular.element(this).scope().handleFiles(this.files)">
-            </div>
+
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" />
@@ -190,4 +167,5 @@
   </div>
 </body>
 <script src="js/script.js"></script>
+
 </html>

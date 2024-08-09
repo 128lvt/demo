@@ -16,4 +16,19 @@ app.controller("ProductController", function ($scope, $http) {
   };
 
   $scope.getProducts();
+
+  $scope.createProduct = function () {
+    $http
+      .post(API_PREFIX + "products", $scope.newProduct,{
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(function (response) {
+        $scope.getProducts();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 });
